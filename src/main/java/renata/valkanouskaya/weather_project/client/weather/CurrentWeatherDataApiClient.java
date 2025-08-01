@@ -20,11 +20,11 @@ public interface CurrentWeatherDataApiClient {
 
     default WeatherData getWeather(WeatherRequest request) {
         return getWeatherByCoordinates(
-                request.getLocation().getLat(),
-                request.getLocation().getLon(),
-                "${app.weather.api-key}",
-                request.getUnits(),
-                request.getLang()
+            request.getLocation().getLat(),
+            request.getLocation().getLon(),
+            request.getApiKey(),
+            request.getUnits(),
+            request.getLang()
         );
     }
 }

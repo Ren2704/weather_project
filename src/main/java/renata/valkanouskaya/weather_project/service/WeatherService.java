@@ -5,8 +5,6 @@ import renata.valkanouskaya.weather_project.model.WeatherResponse;
 
 
 public interface WeatherService {
+
     WeatherResponse getWeather(String city, @Nullable String units, @Nullable String lang);
-    default WeatherResponse getWeather(String city) {
-        return getWeather(city, null, null);
-    }
 }

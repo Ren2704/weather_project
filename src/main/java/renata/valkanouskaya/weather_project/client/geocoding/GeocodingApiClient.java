@@ -1,14 +1,12 @@
 package renata.valkanouskaya.weather_project.client.geocoding;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import renata.valkanouskaya.weather_project.client.geocoding.dto.LocationData;
 import renata.valkanouskaya.weather_project.configuration.FeignConfig;
 import renata.valkanouskaya.weather_project.exceptions.CityNotFoundException;
-
-import java.util.List;
 
 @FeignClient(name = "geocodingClient", url = "https://api.openweathermap.org/geo/1.0", configuration = FeignConfig.class)
 public interface GeocodingApiClient {
@@ -19,8 +17,8 @@ public interface GeocodingApiClient {
             @RequestParam("appid") String apiKey
     );
 
-    default LocationData getFirstLocation(String city) {
-        List<LocationData> locations = getLocations(city, 1, "${app.weather.api-key}");
+    default LocationData getFirstLocation(String city, String apiKey) {
+        List<LocationData> locations = getLocations(city, 1, apiKey);
         if (locations.isEmpty()) {
             throw new CityNotFoundException("Город не найден: " + city);
         }

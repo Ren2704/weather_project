@@ -16,4 +16,6 @@ public class WeatherRequest {
 
     @Builder.Default
     private final String lang = "ru";
+
+    private final String apiKey;
 }
